@@ -1,0 +1,19 @@
+models:
+  - name: silver_bookings
+    columns:
+      - name: BOOKING_ID
+        tests: [not_null, unique]
+
+      - name: TOTAL_AMOUNT
+        tests:
+          - not_null
+
+  - name: silver_hosts
+    columns:
+      - name: HOST_ID
+        tests: [not_null, unique]
+
+  - name: silver_listings
+    columns:
+      - name: LISTING_ID
+        tests: [not_null, unique]

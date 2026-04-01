@@ -1,0 +1,30 @@
+version: 2
+
+models:
+  - name: fact_bookings
+    columns:
+      - name: BOOKING_ID
+        tests: [not_null, unique]
+      - name: LISTING_ID
+        tests: [not_null]
+      - name: HOST_ID
+        tests: [not_null]
+      - name: TOTAL_AMOUNT
+        tests: [not_null]
+
+  - name: dim_listings
+    columns:
+      - name: LISTING_ID
+        tests: [not_null, unique]
+      - name: HOST_ID
+        tests: [not_null]
+
+  - name: dim_hosts
+    columns:
+      - name: HOST_ID
+        tests: [not_null, unique]
+
+  - name: dim_date
+    columns:
+      - name: DATE_DAY
+        tests: [not_null, unique]

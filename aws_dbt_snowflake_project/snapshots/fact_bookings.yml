@@ -1,0 +1,11 @@
+snapshots:
+  - name: scd_fact_bookings
+    relation: ref('fact_bookings')
+    config:
+      database: AIRBNB
+      schema: snapshots
+      alias: scd_fact_bookings
+      unique_key: BOOKING_ID
+      strategy: timestamp
+      updated_at: BOOKING_CREATED_AT
+      dbt_valid_to_current: "to_date('9999-12-31')"
