@@ -12,8 +12,7 @@ URL='s3://tinglu-airbnb-data-snowbucket/source/';
 
 SHOW STAGES;
 
--- Load data(NO credentials in code)
-
+-- Credentials have been removed from the codebase for security reasons.
 COPY INTO BOOKINGS
 FROM @snowstage
 FILES=('bookings.csv')
