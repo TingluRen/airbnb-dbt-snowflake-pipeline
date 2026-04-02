@@ -7,22 +7,22 @@ This project demonstrates a modern data engineering pipeline built using dbt and
 
 ## Architecture
 
-S3 (raw CSV files)
-↓
-Snowflake STAGING (raw ingestion)
-↓
-Bronze (raw copy of source data)
-↓
-Silver (cleaned and standardized data)
-↓
-Gold (analytics layer)
-├── fact_bookings
-├── dim_hosts
-├── dim_listings
-├── dim_date
-└── obt
-↓
-Snapshots (SCD Type 2 history tracking)
+S3 (raw CSV files)  
+↓  
+Snowflake STAGING (raw ingestion)  
+↓  
+Bronze (raw copy of source data)  
+↓  
+Silver (cleaned and standardized data)  
+↓  
+Gold (analytics layer)  
+├── fact_bookings  
+├── dim_hosts  
+├── dim_listings  
+├── dim_date  
+└── obt  
+↓  
+Snapshots (SCD Type 2 history tracking)  
 
 
 ## Key Features
