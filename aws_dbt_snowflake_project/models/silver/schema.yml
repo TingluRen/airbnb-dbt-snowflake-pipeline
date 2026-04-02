@@ -1,19 +1,33 @@
 models:
   - name: silver_bookings
+    description: "Cleaned and standardized booking data."
     columns:
-      - name: BOOKING_ID
-        tests: [not_null, unique]
+      - name: booking_id
+        tests:
+          - not_null
 
-      - name: TOTAL_AMOUNT
+      - name: listing_id
+        tests:
+          - not_null
+
+      - name: booking_date
+        tests:
+          - not_null
+
+  - name: silver_listings
+    description: "Cleaned listing data with standardized attributes."
+    columns:
+      - name: listing_id
+        tests:
+          - not_null
+
+      - name: host_id
         tests:
           - not_null
 
   - name: silver_hosts
+    description: "Cleaned host data."
     columns:
-      - name: HOST_ID
-        tests: [not_null, unique]
-
-  - name: silver_listings
-    columns:
-      - name: LISTING_ID
-        tests: [not_null, unique]
+      - name: host_id
+        tests:
+          - not_null

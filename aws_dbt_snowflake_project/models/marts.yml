@@ -1,0 +1,90 @@
+models:
+  - name: fact_bookings
+    description: "Booking-grain fact table for Airbnb reservations and revenue analytics."
+    columns:
+      - name: BOOKING_ID
+        description: "Primary key for each booking."
+        tests:
+          - not_null
+          - unique
+
+      - name: LISTING_ID
+        description: "Foreign key to dim_listings."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_listings')
+              field: LISTING_ID
+
+      - name: HOST_ID
+        description: "Foreign key to dim_hosts."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_hosts')
+              field: HOST_ID
+
+      - name: BOOKING_DATE
+        description: "Date of the booking event."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_date')
+              field: DATE_DAY
+
+      - name: TOTAL_AMOUNT
+        description: "Total booking amount after metric standardization."
+        tests:
+          - not_null
+
+      - name: BOOKING_STATUS
+        description: "Booking lifecycle status."
+        tests:
+          - accepted_values:
+              values: ['confirmed', 'cancelled', 'pending']
+
+  - name: dim_hosts
+    description: "Host dimension table with response and superhost attributes."
+    columns:
+      - name: HOST_ID
+        tests:
+          - not_null
+          - unique
+
+      - name: HOST_NAME
+        tests:
+          - not_null
+
+  - name: dim_listings
+    description: "Listing dimension table with property and pricing attributes."
+    columns:
+      - name: LISTING_ID
+        tests:
+          - not_null
+          - unique
+
+      - name: HOST_ID
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_hosts')
+              field: HOST_ID
+
+      - name: PRICE_PER_NIGHT
+        tests:
+          - not_null
+
+  - name: dim_date
+    description: "Calendar dimension generated from booking dates."
+    columns:
+      - name: DATE_DAY
+        tests:
+          - not_null
+          - unique
+
+  - name: obt
+    description: "One Big Table for ad hoc analytics across bookings, listings, and hosts."
+    columns:
+      - name: BOOKING_ID
+        tests:
+          - not_null
